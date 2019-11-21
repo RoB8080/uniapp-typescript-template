@@ -15,13 +15,17 @@ project // 项目根目录
 ├─ public
 │  └─ index.html // 项目根html文件 !勿改
 ├─ src // 源文件目录
-│  ├─ component // 公共组件文件夹  
+│  ├─ api // api文件夹
+│  ├─ component // 公共组件文件夹
 │  ├─ pages // 页面目录
 │  │  └─ example // example页面文件夹
 │  │     ├─ index.vue // 主页面
 │  │     ├─ sub.vue // 子页面
 │  │     └─ component // 私有组件文件夹   
 │  ├─ static // 静态资源文件夹
+│  ├─ store
+│  │  ├─ module // 存放store模块的文件夹
+│  │  └─ index.ts
 │  ├─ style // 全局样式文件夹
 │  │  └─ variables.scss // 全局SCSS变量文件
 │  ├─ utils // 功能模块文件夹
