@@ -35,6 +35,7 @@
     "@dcloudio/uni-mp-weixin": "^2.0.0-24220191115006",
     "@dcloudio/uni-stat": "^2.0.0-24220191115006",
     "flyio": "^0.6.2",
+    "lint-staged": "^9.4.3",
     "regenerator-runtime": "^0.12.1",
     "vue": "^2.6.10",
     "vue-class-component": "^6.3.2",
