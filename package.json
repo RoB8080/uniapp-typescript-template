@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
+    "lint": "vue-cli-service lint",
     "build:app-plus": "cross-env NODE_ENV=production UNI_PLATFORM=app-plus vue-cli-service uni-build",
     "build:custom": "cross-env NODE_ENV=production uniapp-cli custom",
     "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build",
@@ -51,9 +52,14 @@
     "@dcloudio/webpack-uni-mp-loader": "^2.0.0-24220191115006",
     "@dcloudio/webpack-uni-pages-loader": "^2.0.0-24220191115006",
     "@vue/cli-plugin-babel": "3.5.1",
+    "@vue/cli-plugin-eslint": "^4.0.5",
     "@vue/cli-plugin-typescript": "^3.5.1",
     "@vue/cli-service": "^4.0.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/eslint-config-typescript": "^4.0.0",
     "babel-plugin-import": "^1.11.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
     "postcss-comment": "^2.0.0",
     "typescript": "^3.0.0",
     "vue-template-compiler": "^2.6.10"
@@ -64,5 +70,14 @@
   ],
   "uni-app": {
     "scripts": {}
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,js,vue}": [
+      "vue-cli-service lint --fix",
+      "git add"
+    ]
   }
 }
