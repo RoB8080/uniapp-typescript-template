@@ -10,16 +10,23 @@ module.exports = {
         '@vue/typescript'
     ],
     rules: {
+        'array-callback-return': 'error',
+        'curly': 'error',
+        'eqeqeq': 'error',
+        'no-useless-return': 'error',
+        'indent': ['error', 4],
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'no-trailing-spaces': ['error', { 'ignoreComments': true }],
         'space-before-function-paren': [2, 'never'],
-        indent: ['warn', 4],
-        'vue/html-closing-bracket-newline': ['error', {
-            singleline: 'never',
-            multiline: 'never'
-        }],
+        'prefer-destructuring': ['warn', { 'object': true, 'array': false }],
+        'prefer-const': 'warn',
         'vue/array-bracket-spacing': 'error',
-        'vue/html-indent': ['warn', 4],
+        'vue/html-closing-bracket-newline': ['error', {
+            'singleline': 'never',
+            'multiline': 'never'
+        }],
+        'vue/html-indent': ['error', 4],
         'vue/arrow-spacing': 'error',
         'vue/block-spacing': 'error',
         'vue/brace-style': 'error',

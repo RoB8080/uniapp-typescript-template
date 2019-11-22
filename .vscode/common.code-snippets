@@ -1,0 +1,55 @@
+{
+    "ClassComponent": {
+        "prefix": "<vue> class-component",
+        "body": [
+            "<template>",
+            "",
+            "</template>",
+            "",
+            "<script lang=\"ts\">",
+            "import { Component, Vue } from 'vue-property-decorator'",
+            "",
+            "@Component({",
+			"    name: '${1:ComponentName}'",
+            "})",
+            "export default class extends Vue {}",
+			"</script>",
+            "",
+            "<style lang=\"scss\" scoped>",
+            "",
+            "</style>",
+        ],
+        "description": "Vue Class Component"
+    },
+    "ClassStoreModule": {
+        "prefix": "<vue> class-store-module",
+        "body": [
+            "import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'",
+            "import store from '@/store'",
+            "",
+            "export interface I${1:StoreName}State {",
+            "",
+            "}",
+            "",
+            "@Module({ dynamic: true, namespaced: true, store, name: '${2:storeName}' })",
+            "class ${1:StoreName} extends VuexModule implements I${1:StoreName}State {",
+            "",
+            "}",
+            "",
+            "export const ${1:StoreName}Module = getModule(${1:StoreName})",
+        ],
+        "description": "Vue Class Store Module"
+    },
+    "UniPage": {
+        "prefix": "<uni> page",
+        "body": [
+            "{",
+            "    \"path\": \"pages/${1:index/index}\",",
+            "    \"style\": {" ,
+            "        \"navigationBarTitleText\": \"${2:BarTitle}\"",
+            "    }",
+            "}"
+        ],
+        "description": "Vue Class Store Module"
+    }
+}

@@ -15,10 +15,13 @@ module.exports = {
     //         }
     //     }
     // },
+    pluginOptions: {
+        lintStyleOnBuild: true
+    },
     css: {
         loaderOptions: {
             sass: {
-                data: `@import "~@/style/variables.scss";`
+                prependData: `@import "~@/style/variables.scss";`
             }
         }
     }

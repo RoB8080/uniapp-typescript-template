@@ -1,45 +1,58 @@
 <template>
-    <view class="content">
-        <image
-            class="logo"
-            src="../../static/logo.png" />
-        <view>
-            <text class="title">
-                {{ title }}
-            </text>
+    <view
+        class="container"
+        :style="theme">
+        <view class="body">
+            <view class="title">
+                <text class="highlight">
+                    U
+                </text>
+                <text>niapp </text>
+                <text class="highlight">
+                    T
+                </text>
+                <text>ypescript </text>
+                <text class="highlight">
+                    T
+                </text>
+                <text>emplate</text>
+            </view>
         </view>
     </view>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-    data() {
-        return {
-            title: 'Hello'
-        }
-    },
-    onLoad() {
+import { Component, Vue } from 'vue-property-decorator'
 
-    },
-    methods: {
-
-    }
+@Component({
+    name: 'Index'
 })
+export default class extends Vue {
+    private get theme() {
+        return this.$store.getters['theme/themeStyleString']
+    }
+    private mounted() {
+        console.log(this.$store, this.$theme)
+    }
+}
 </script>
 
-<style>
+<style lang="scss">
     .content {
-        text-align: center;
-        height: 400upx;
+        position: relative;
+
+        height: 100%;
     }
-    .logo{
-        height: 200upx;
-        width: 200upx;
-        margin-top: 200upx;
+    .body {
+        position: absolute;
     }
     .title {
-        font-size: 36upx;
-        color: #8f8f94;
+        font-size: 0;
+        > text {
+            font-size: 36rpx;
+            &.highlight {
+                color: var(--color-primary);
+            }
+        }
     }
 </style>

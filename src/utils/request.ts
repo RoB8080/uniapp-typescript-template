@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios'
 
 const serializeParams = (params: any[]): string => {
     const arr: string[] = []
-    for (let [key, value] of Object.entries(params)) {
+    for (const [key, value] of Object.entries(params)) {
         if (Array.isArray(value)) {
             value.forEach((e) => {
                 arr.push(`${key}=${e}`)
