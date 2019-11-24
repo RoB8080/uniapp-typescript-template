@@ -15,7 +15,7 @@
                 特性 Features
             </view>
             <feature-card
-                enable-function
+                :reaction="1"
                 title="主题"
                 label="内置Theme模块，由CSS变量实现，使用方法参考README。">
                 <view class="input-form">
@@ -23,6 +23,11 @@
                     <input v-model="tempPrimaryColor">
                 </view>
             </feature-card>
+            <feature-card
+                :reaction="2"
+                title="组件"
+                label="内置基础组件库，涵盖多个方面。"
+                @click="navigateTo('/pages/components/index')" />
         </view>
     </view>
 </template>
@@ -31,12 +36,12 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { AppModule } from '@/store/module/app'
 import { ThemeModule } from '@/store/module/theme'
-import featureCard from '@/component/misc/feature-card.vue'
+import FeatureCard from '@/component/misc/feature-card.vue'
 
 @Component({
-    name: 'Index',
+    name: 'index',
     components: {
-        featureCard
+        FeatureCard
     }
 })
 export default class extends Vue {
@@ -69,6 +74,11 @@ export default class extends Vue {
         }
     }
 
+    private navigateTo(route: string) {
+        console.log(route)
+        uni.navigateTo({ url: route })
+    }
+
     private mounted() {
         this.tempPrimaryColor = this.primaryColor
     }
@@ -83,6 +93,7 @@ export default class extends Vue {
         font-weight: bolder;
         line-height: 1.25;
         text-align: center;
+
         color: $--color-text-regular;
     }
     > .desc {
@@ -91,6 +102,7 @@ export default class extends Vue {
         font-size: 38rpx;
         line-height: 1.25;
         text-align: center;
+
         color: $--color-text-secondary;
     }
 }
@@ -98,13 +110,14 @@ export default class extends Vue {
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
-    grid-gap: 15rpx;
+    grid-gap: 30rpx;
     padding: 0 30rpx 30rpx 30rpx;
     >.title {
         font-size: 42rpx;
         font-weight: bolder;
         line-height: 1.25;
         text-align: center;
+
         color: $--color-text-regular;
     }
 }
@@ -120,17 +133,18 @@ export default class extends Vue {
     width: fit-content;
 
     font-size: 26rpx;
+
     color: $--color-text-regular;
     > view {
         width: fit-content;
         height: 40rpx;
 
-        color: var(--color-primary);
         line-height: 40rpx;
+
+        color: var(--color-primary);
     }
     > input {
         box-sizing: border-box;
-
         width: 130rpx;
         height: 40rpx;
         padding-top: 2rpx;

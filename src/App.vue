@@ -17,6 +17,9 @@ export default Vue.extend({
 </script>
 
 <style>
+    page {
+        min-height: 100%
+    }
     input {
         height: auto;
         min-height: auto;

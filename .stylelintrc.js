@@ -13,6 +13,7 @@ module.exports = {
         'unit-no-unknown': [true, { ignoreUnits: ['rpx'] }],
         'selector-pseudo-class-case': 'lower',
         'selector-pseudo-element-case': 'lower',
+        'selector-type-no-unknown': [true, { ignoreTypes: ['page'] }],
         'indentation': 4,
         'order/order': rulesOrder.order,
         'order/properties-order': rulesOrder.propertiesOrder

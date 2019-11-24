@@ -58,7 +58,8 @@ const propertiesOrder = [
             'padding-top',
             'padding-right',
             'padding-bottom',
-            'padding-left'
+            'padding-left',
+            'box-sizing'
         ]
     },
     // Typography
@@ -73,13 +74,25 @@ const propertiesOrder = [
             'font-weight',
             'text-decoration',
             'line-height',
-            'text-align',
+            'text-align'
+        ]
+    },
+    // Visual
+    {
+        groupName: 'Visual',
+        emptyLineBefore: 'always',
+        order: 'flexible',
+        noEmptyLineBetween: true,
+        properties: [
             'color',
             'background',
             'background-color',
             'border',
             'border-raidus',
-            'opacity'
+            'opacity',
+            'box-shadow',
+            'filter',
+            'overflow'
         ]
     }
 ]

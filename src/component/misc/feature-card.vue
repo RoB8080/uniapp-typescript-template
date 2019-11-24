@@ -18,11 +18,11 @@
             </view>
         </view>
         <view
-            v-if="enableFunction"
+            v-if="reaction"
             class="button"
-            @click="toggleFunction">
+            @click="clickButton">
             <view class="inner">
-                {{ showFunction ? '介绍' : '尝试' }}
+                {{ buttonLabel }}
             </view>
         </view>
     </view>
@@ -37,8 +37,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 export default class extends Vue {
     @Prop({
         required: false,
-        default: false
-    }) private enableFunction!: boolean
+        default: 0
+    }) private reaction!: number
 
     @Prop({
         required: false,
@@ -52,9 +52,18 @@ export default class extends Vue {
 
     private showFunction: boolean = false
 
-    private toggleFunction() {
-        if (this.enableFunction) {
-            this.showFunction = !this.showFunction
+    private get buttonLabel(): string {
+        switch (this.reaction) {
+        case 1: return this.showFunction ? '介绍' : '尝试'
+        case 2: return '查看'
+        default: return ''
+        }
+    }
+
+    private clickButton() {
+        switch (this.reaction) {
+        case 1: this.showFunction = !this.showFunction; break
+        case 2: this.$emit('click'); break
         }
     }
 }
@@ -67,11 +76,11 @@ export default class extends Vue {
     grid-template-areas: 'title content button';
     height: 120rpx;
 
-    border: 1px solid $--color-border-light;
     border-radius: 10rpx;
 
+    overflow: hidden;
     background-color: white;
-    filter: $--shadow-filter;
+    filter: $--shadow-filter-base;
     > .title {
         position: relative;
 
@@ -80,16 +89,20 @@ export default class extends Vue {
 
         font-size: 30rpx;
         font-weight: bold;
+
         color: $--color-text-regular;
+
         border-right: 1px solid $--color-border-lighter;
     }
     > .content {
         position: relative;
         > .label {
+            height: 100%;
             padding: 15rpx;
-            grid-area: label;
+            box-sizing: border-box;
 
             font-size: 24rpx;
+
             color: $--color-text-secondary;
             transition: all .2s linear;
         }
@@ -118,10 +131,10 @@ export default class extends Vue {
     > .button {
         position: relative;
 
-        height: 100%;
-        width: 110rpx;
+        width: calc(110rpx + 1px);
 
         font-size: 30rpx;
+
         color: $--color-white;
         background-color: var(--color-primary);
     }

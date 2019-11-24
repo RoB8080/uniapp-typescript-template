@@ -3,16 +3,20 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarBackgroundColor": "#363636",
-				"navigationBarTextStyle": "white",
 				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/components/index",
+			"style": {
+				"navigationBarTitleText": "组件"
 			}
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#363636",
+		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	}
 }

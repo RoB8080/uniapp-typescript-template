@@ -18,7 +18,8 @@ $--bg-color: #ffffff;
 $--bg-color-grey: #f8f8f8;
 $--bg-color-mask: rgba(0, 0, 0, 0.4);
 
-$--shadow-filter: drop-shadow(0 0 5px rgba(0, 0, 0, .05));
+$--shadow-filter-base: drop-shadow(2px 2px 4px rgba(0, 0, 0, .2));
+$--shadow-filter-light: drop-shadow(0 0 8px rgba(0, 0, 0, .1));
 
 $--font-large: 18px;
 $--font-standard: 16px;
