@@ -1,5 +1,6 @@
 <script lang="ts">
 import Vue from 'vue'
+import { AppModule } from '@/store/module/app'
 
 export default Vue.extend({
     mpType: 'app',
@@ -16,5 +17,8 @@ export default Vue.extend({
 </script>
 
 <style>
-    /*每个页面公共css */
+    input {
+        height: auto;
+        min-height: auto;
+    }
 </style>

@@ -1,11 +1,24 @@
-$--color-primary: #52b9fd;
+$--color-primary: #46b4fd;
 $--color-success: #4cd964;
 $--color-warning: #f0ad4e;
 $--color-error: #dd524d;
 
+$--color-white: #ffffff;
+
+$--color-text-primary: #303133;
+$--color-text-regular: mix($--color-text-primary, $--color-white, 85);
+$--color-text-secondary: mix($--color-text-primary, $--color-white, 70);
+$--color-text-placeholder: mix($--color-text-primary, $--color-white, 55);
+
+$--color-border-base: #DCDFE6;
+$--color-border-light: mix($--color-border-base, $--color-white, 80);
+$--color-border-lighter: mix($--color-border-base, $--color-white, 60);
+
 $--bg-color: #ffffff;
 $--bg-color-grey: #f8f8f8;
 $--bg-color-mask: rgba(0, 0, 0, 0.4);
+
+$--shadow-filter: drop-shadow(0 0 5px rgba(0, 0, 0, .05));
 
 $--font-large: 18px;
 $--font-standard: 16px;

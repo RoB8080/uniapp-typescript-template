@@ -4,7 +4,7 @@ const order = [
     'declarations',
     'rules',
     'at-rules'
-];
+]
 
 const propertiesOrder = [
     // Positioning
@@ -20,8 +20,8 @@ const propertiesOrder = [
             'bottom',
             'left',
             'z-index',
-            'transform',
-        ],
+            'transform'
+        ]
     },
     // Box-model
     {
@@ -58,8 +58,8 @@ const propertiesOrder = [
             'padding-top',
             'padding-right',
             'padding-bottom',
-            'padding-left',
-        ],
+            'padding-left'
+        ]
     },
     // Typography
     {
@@ -79,10 +79,10 @@ const propertiesOrder = [
             'background-color',
             'border',
             'border-raidus',
-            'opacity',
-        ],
+            'opacity'
+        ]
     }
-];
+]
 
 module.exports = {
     order,

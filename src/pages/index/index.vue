@@ -1,58 +1,143 @@
 <template>
     <view
-        class="container"
+        class="content"
         :style="theme">
-        <view class="body">
+        <view class="banner">
             <view class="title">
-                <text class="highlight">
-                    U
-                </text>
-                <text>niapp </text>
-                <text class="highlight">
-                    T
-                </text>
-                <text>ypescript </text>
-                <text class="highlight">
-                    T
-                </text>
-                <text>emplate</text>
+                Uniapp Typescript Template
             </view>
+            <view class="desc">
+                uni-app模板，用于快速初始化项目并提高开发效率。
+            </view>
+        </view>
+        <view class="features">
+            <view class="title">
+                特性 Features
+            </view>
+            <feature-card
+                enable-function
+                title="主题"
+                label="内置Theme模块，由CSS变量实现，使用方法参考README。">
+                <view class="input-form">
+                    <view>主题色:</view>
+                    <input v-model="tempPrimaryColor">
+                </view>
+            </feature-card>
         </view>
     </view>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
+import { AppModule } from '@/store/module/app'
+import { ThemeModule } from '@/store/module/theme'
+import featureCard from '@/component/misc/feature-card.vue'
 
 @Component({
-    name: 'Index'
+    name: 'Index',
+    components: {
+        featureCard
+    }
 })
 export default class extends Vue {
     private get theme() {
         return this.$store.getters['theme/themeStyleString']
     }
+
+    // Store中主题色的setter/getter
+    private get primaryColor() {
+        return ThemeModule.rules['--color-primary']
+    }
+    private set primaryColor(val: string) {
+        ThemeModule.SetRule({ key: '--color-primary', value: val })
+    }
+
+    // 临时编辑主题色
+    private tempPrimaryColor: string = '#ffffff'
+
+    // 相应Store中主题色变化
+    @Watch('primaryColor')
+    private onPrimaryColorChange(val: string) {
+        this.tempPrimaryColor = val
+    }
+
+    // 临时编辑值合法时，赋值给Store
+    @Watch('tempPrimaryColor')
+    private onTempPrimaryColorChange(val: string) {
+        if (/^#[0-9a-f]{6}$/.test(val) && this.primaryColor !== val) {
+            this.primaryColor = val
+        }
+    }
+
     private mounted() {
-        console.log(this.$store, this.$theme)
+        this.tempPrimaryColor = this.primaryColor
     }
 }
 </script>
 
 <style lang="scss">
-    .content {
-        position: relative;
+.banner {
+    padding: 30rpx 0;
+    > .title {
+        font-size: 46rpx;
+        font-weight: bolder;
+        line-height: 1.25;
+        text-align: center;
+        color: $--color-text-regular;
+    }
+    > .desc {
+        padding: 15rpx 15rpx 0 15rpx;
 
-        height: 100%;
+        font-size: 38rpx;
+        line-height: 1.25;
+        text-align: center;
+        color: $--color-text-secondary;
     }
-    .body {
-        position: absolute;
+}
+.features {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    grid-gap: 15rpx;
+    padding: 0 30rpx 30rpx 30rpx;
+    >.title {
+        font-size: 42rpx;
+        font-weight: bolder;
+        line-height: 1.25;
+        text-align: center;
+        color: $--color-text-regular;
     }
-    .title {
-        font-size: 0;
-        > text {
-            font-size: 36rpx;
-            &.highlight {
-                color: var(--color-primary);
-            }
-        }
+}
+.input-form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 15rpx;
+    width: fit-content;
+
+    font-size: 26rpx;
+    color: $--color-text-regular;
+    > view {
+        width: fit-content;
+        height: 40rpx;
+
+        color: var(--color-primary);
+        line-height: 40rpx;
     }
+    > input {
+        box-sizing: border-box;
+
+        width: 130rpx;
+        height: 40rpx;
+        padding-top: 2rpx;
+        border-bottom: 2rpx solid $--color-border-light;
+
+        text-align: center;
+        line-height: 36rpx;
+    }
+}
 </style>

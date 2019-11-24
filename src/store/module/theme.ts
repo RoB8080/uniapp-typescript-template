@@ -3,7 +3,7 @@ import store from '@/store'
 import Vue, { VueConstructor } from 'vue'
 
 const defaultTheme: ThemeRules = {
-    '--color-primary': '#90c8fd'
+    '--color-primary': '#46b4fd'
 }
 
 export interface ThemeRuleOption {
@@ -21,7 +21,7 @@ export interface IThemeState {
 
 @Module({ dynamic: true, namespaced: true, store, name: 'theme' })
 class Theme extends VuexModule implements IThemeState {
-    public rules: ThemeRules = uni.getStorageSync('theme') || defaultTheme;
+    public rules: ThemeRules = Object.assign(defaultTheme, uni.getStorageSync('theme'));
 
     public get themeStyleString() {
         let string = ''

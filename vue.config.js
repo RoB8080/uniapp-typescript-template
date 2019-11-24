@@ -17,12 +17,12 @@ module.exports = {
     // },
     pluginOptions: {
         lintStyleOnBuild: true
-    },
-    css: {
-        loaderOptions: {
-            sass: {
-                prependData: `@import "~@/style/variables.scss";`
-            }
-        }
     }
+    // css: {
+    //     loaderOptions: {
+    //         sass: {
+    //             prependData: `@import "~@/style/variables.scss";`
+    //         }
+    //     }
+    // }
 }

@@ -8,22 +8,44 @@ export enum DevicePlatform {
 
 export interface IAppState {
     platform: DevicePlatform
+    statusBarHeight: number
     darkMode: boolean
 }
 
 @Module({ dynamic: true, namespaced: true, store, name: 'app' })
 class App extends VuexModule implements IAppState {
     public platform = DevicePlatform.iOS
+    public statusBarHeight = 20
     public darkMode: boolean = false
+
+    public get placeholderHeight() {
+        return this.statusBarHeight + 44
+    }
 
     @Mutation
     private SET_PLATFORM(platform: DevicePlatform) {
         this.platform = platform
     }
 
+    @Mutation
+    private SET_STATUS_BAR_HEIGHT(height: number) {
+        this.statusBarHeight = height
+    }
+
     @Action
-    public SetPlatForm(platform: DevicePlatform) {
-        this.SET_PLATFORM(platform)
+    public async GetSystemInfo() {
+        return new Promise((resolve) => {
+            uni.getSystemInfo({
+                success: (res) => {
+                    this.SET_PLATFORM(res.platform === 'ios' ? DevicePlatform.iOS : DevicePlatform.Android)
+                    this.SET_STATUS_BAR_HEIGHT(res.statusBarHeight || this.statusBarHeight)
+                    console.log(res)
+                },
+                complete: () => {
+                    resolve()
+                }
+            })
+        })
     }
 
     @Mutation
