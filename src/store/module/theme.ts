@@ -2,8 +2,11 @@ import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-dec
 import store from '@/store'
 import Vue, { VueConstructor } from 'vue'
 
+const { fontSizeSetting } = uni.getSystemInfoSync()
+
 const defaultTheme: ThemeRules = {
-    '--color-primary': '#46b4fd'
+    '--color-primary': '#46b4fd',
+    '--font-size-base': fontSizeSetting ? `${fontSizeSetting}px` : `32rpx`
 }
 
 export interface ThemeRuleOption {

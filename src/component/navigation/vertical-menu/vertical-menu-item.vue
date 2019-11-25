@@ -88,7 +88,7 @@ export default class extends Vue {
         grid-area: label;
     }
     > .icon, > .label {
-        font-size: 28rpx;
+        font-size: $--font-size-medium;
         line-height: 1.5;
 
         color: $--color-text-secondary;
@@ -106,12 +106,12 @@ export default class extends Vue {
             top: 50%;
             transform: translate(-50%, -50%);
 
-            font-size: 26rpx;
+            font-size: $--font-size-base;
         }
     }
     &.top {
         > .icon, > .label {
-            font-size: 32rpx;
+            font-size: $--font-size-large;
             font-weight: bold;
             line-height: 1.75;
 

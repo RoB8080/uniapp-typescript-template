@@ -89,7 +89,7 @@ export default class extends Vue {
 .banner {
     padding: 30rpx 0;
     > .title {
-        font-size: 46rpx;
+        font-size: $--font-size-extra-large;
         font-weight: bolder;
         line-height: 1.25;
         text-align: center;
@@ -99,7 +99,7 @@ export default class extends Vue {
     > .desc {
         padding: 15rpx 15rpx 0 15rpx;
 
-        font-size: 38rpx;
+        font-size: $--font-size-medium;
         line-height: 1.25;
         text-align: center;
 
@@ -113,7 +113,7 @@ export default class extends Vue {
     grid-gap: 30rpx;
     padding: 0 30rpx 30rpx 30rpx;
     >.title {
-        font-size: 42rpx;
+        font-size: $--font-size-large;
         font-weight: bolder;
         line-height: 1.25;
         text-align: center;
@@ -132,26 +132,22 @@ export default class extends Vue {
     grid-column-gap: 15rpx;
     width: fit-content;
 
-    font-size: 26rpx;
+    font-size: $--font-size-base;
 
     color: $--color-text-regular;
     > view {
         width: fit-content;
-        height: 40rpx;
-
-        line-height: 40rpx;
+        padding: 2rpx 0;
 
         color: var(--color-primary);
     }
     > input {
         box-sizing: border-box;
         width: 130rpx;
-        height: 40rpx;
         padding-top: 2rpx;
         border-bottom: 2rpx solid $--color-border-light;
 
         text-align: center;
-        line-height: 36rpx;
     }
 }
 </style>

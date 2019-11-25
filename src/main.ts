@@ -10,10 +10,6 @@ import gesture from '@/utils/gesture'
 setUpdateManager()
 // 挂载store
 Vue.prototype.$store = store
-// 挂载theme
-Vue.prototype.$theme = theme
-// 使用gesture
-Vue.use(gesture)
 
 Vue.config.productionTip = false
 

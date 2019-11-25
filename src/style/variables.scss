@@ -21,7 +21,10 @@ $--bg-color-mask: rgba(0, 0, 0, 0.4);
 $--shadow-filter-base: drop-shadow(2px 2px 4px rgba(0, 0, 0, .2));
 $--shadow-filter-light: drop-shadow(0 0 8px rgba(0, 0, 0, .1));
 
-$--font-large: 18px;
-$--font-standard: 16px;
-$--font-small: 14px;
-$--font-mini: 12px;
+
+$--font-size-extra-small: calc(var(--font-size-base) * 0.86);
+$--font-size-small: calc(var(--font-size-base) * 0.93);
+$--font-size-base: var(--font-size-base);
+$--font-size-medium: calc(var(--font-size-base) * 1.14);
+$--font-size-large: calc(var(--font-size-base) * 1.28);
+$--font-size-extra-large: calc(var(--font-size-base) * 1.42);

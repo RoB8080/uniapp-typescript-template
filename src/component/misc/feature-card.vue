@@ -87,7 +87,7 @@ export default class extends Vue {
         grid-area: title;
         width: 110rpx;
 
-        font-size: 30rpx;
+        font-size: $--font-size-base;
         font-weight: bold;
 
         color: $--color-text-regular;
@@ -101,7 +101,7 @@ export default class extends Vue {
             padding: 15rpx;
             box-sizing: border-box;
 
-            font-size: 24rpx;
+            font-size: $--font-size-small;
 
             color: $--color-text-secondary;
             transition: all .2s linear;
@@ -133,7 +133,7 @@ export default class extends Vue {
 
         width: calc(110rpx + 1px);
 
-        font-size: 30rpx;
+        font-size: $--font-size-base;
 
         color: $--color-white;
         background-color: var(--color-primary);
