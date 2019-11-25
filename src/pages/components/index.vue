@@ -34,7 +34,13 @@ export default class extends Vue {
     }
 
     private menu: MenuItem[] = [
-        { label: 'Basic' },
+        {
+            label: 'Basic',
+            subItems: [
+                { label: 'Button 按钮' },
+                { label: 'link 链接' }
+            ]
+        },
         { label: 'Form' },
         { label: 'Navigation' },
         { label: 'Misc' }
@@ -73,7 +79,7 @@ export default class extends Vue {
         top: 0;
         bottom: 0;
 
-        width: 350rpx;
+        width: 400rpx;
 
         background-color: $--color-white;
         transition: all .3s ease;
