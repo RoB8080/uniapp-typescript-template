@@ -16,12 +16,16 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-    page {
-        min-height: 100%
-    }
-    input {
-        height: auto;
-        min-height: auto;
-    }
+<style lang="scss">
+$icomoon-font-path: '~@/iconfont/fonts';
+
+page {
+    min-height: 100%
+}
+input {
+    height: auto;
+    min-height: auto;
+}
+
+@import "~@/iconfont/style.scss";
 </style>

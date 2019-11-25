@@ -9,14 +9,15 @@
             :class="showMenu ? '' : 'hide'">
             <vertical-menu
                 class="menu"
-                :menu-items="menu" />
+                :menu-items="menu"
+                :active.sync="active" />
         </view>
     </gesture-view>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import VerticalMenu, { MenuItem } from '@/component/navigation/vertical-menu.vue'
+import VerticalMenu, { VerticalMenuItem } from '@/component/navigation/vertical-menu/vertical-menu.vue'
 import GestureView from '@/component/misc/gesture-view.vue'
 
 @Component({
@@ -33,18 +34,28 @@ export default class extends Vue {
         return this.$store.getters['theme/themeStyleString']
     }
 
-    private menu: MenuItem[] = [
+    private menu: VerticalMenuItem[] = [
         {
             label: 'Basic',
+            value: 'basic',
             subItems: [
-                { label: 'Button 按钮' },
-                { label: 'link 链接' }
+                { label: 'link 链接', value: 'link' }
             ]
         },
-        { label: 'Form' },
-        { label: 'Navigation' },
-        { label: 'Misc' }
+        {
+            label: 'Form',
+            value: 'form',
+            subItems: [
+                { label: 'Button 按钮', value: 'button' },
+                { label: 'Radio 单选框', value: 'radio' },
+                { label: 'Checkbox 多选框', value: 'checkbox' }
+            ]
+        },
+        { label: 'Navigation', value: 'navigation' },
+        { label: 'Misc', value: 'misc' }
     ]
+
+    private active: string = '/basic/link'
 
     private onSwipeLeft() {
         this.showMenu = false

@@ -87,6 +87,7 @@ const propertiesOrder = [
             'color',
             'background',
             'background-color',
+            'background-image',
             'border',
             'border-raidus',
             'opacity',
