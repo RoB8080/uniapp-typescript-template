@@ -14,7 +14,7 @@
         <drawer
             ref="drawer"
             direction="left"
-            depth="200px">
+            depth="350rpx">
             <vertical-menu
                 class="menu"
                 :menu-items="menu"
@@ -79,6 +79,6 @@ export default class extends ThemeVue {
     grid-template-rows: 1fr;
 }
 .menu {
-    background-color: black
+    background-color: black;
 }
 </style>

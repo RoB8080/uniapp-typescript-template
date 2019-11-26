@@ -3,10 +3,7 @@
         class="drawer__wrap"
         :class="active? 'active' : ''"
         :style="variablesStyle"
-        @touchstart.stop
-        @touchmove.stop
-        @touchend.stop
-        @touchcancel.stop>
+        @touchmove.stop>
         <movable-view
             class="drawer__slider"
             :class="_direction"
