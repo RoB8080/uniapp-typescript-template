@@ -1,18 +1,26 @@
 <template>
-    <gesture-view
+    <view
         class="content"
         :style="theme"
-        @swipeleft="onSwipeLeft"
-        @swiperight="onSwipeRight">
+        @touchstart="$refs['drawer'].touchStart($event)"
+        @touchmove="$refs['drawer'].touchMove($event)"
+        @touchend="$refs['drawer'].touchEnd($event)"
+        @touchcancel="$refs['drawer'].touchEnd($event)">
         <view
-            class="menu-wrap"
-            :class="showMenu ? '' : 'hide'">
+            class="button"
+            @click="openDrawer">
+            打开
+        </view>
+        <drawer
+            ref="drawer"
+            direction="left"
+            depth="200px">
             <vertical-menu
                 class="menu"
                 :menu-items="menu"
                 :active.sync="active" />
-        </view>
-    </gesture-view>
+        </drawer>
+    </view>
 </template>
 
 <script lang="ts">
@@ -20,12 +28,14 @@ import { Component, Vue } from 'vue-property-decorator'
 import ThemeVue from '@/mixins/theme.vue'
 import VerticalMenu, { VerticalMenuItem } from '@/component/navigation/vertical-menu/vertical-menu.vue'
 import GestureView from '@/component/misc/gesture-view.vue'
+import Drawer from '@/component/misc/drawer.vue'
 
 @Component({
     name: 'components',
     components: {
         VerticalMenu,
-        GestureView
+        GestureView,
+        Drawer
     }
 })
 export default class extends ThemeVue {
@@ -54,12 +64,9 @@ export default class extends ThemeVue {
 
     private active: string = '/basic/link'
 
-    private onSwipeLeft() {
-        this.showMenu = false
-    }
-
-    private onSwipeRight() {
-        this.showMenu = true
+    private openDrawer() {
+        // @ts-ignore
+        this.$refs['drawer'].open()
     }
 }
 </script>
@@ -71,32 +78,7 @@ export default class extends ThemeVue {
     display: grid;
     grid-template-rows: 1fr;
 }
-
-.menu-wrap {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-
-    background-color: $--bg-color-mask;
-    transition: all .3s linear;
-    > .menu {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-
-        width: 400rpx;
-
-        background-color: $--color-white;
-        transition: all .3s ease;
-    }
-    &.hide {
-        background-color: transparent;
-        > .menu {
-            transform: translateX(-100%);
-        }
-    }
+.menu {
+    background-color: black
 }
 </style>

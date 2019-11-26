@@ -36,6 +36,7 @@ export default class extends Vue {
     }
 
     private onTouchMove({ changedTouches: [changedTouch] }: TouchEvent) {
+        console.log(changedTouch)
     }
 
     private onTouchEnd({ changedTouches: [changedTouch] }: TouchEvent) {
@@ -73,5 +74,6 @@ export default class extends Vue {
 <style lang="scss" scoped>
 .gesture-view__body {
     height: 100%;
+    touch-action: pan-x;
 }
 </style>

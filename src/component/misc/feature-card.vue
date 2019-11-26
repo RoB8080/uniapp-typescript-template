@@ -10,9 +10,13 @@
         <view
             class="content"
             :class="showFunction ? 'function-mode' : ''">
-            <view class="label">
-                {{ label }}
-            </view>
+            <movable-area class="label-container">
+                <movable-view
+                    class="label"
+                    direction="vertical">
+                    {{ label }}
+                </movable-view>
+            </movable-area>
             <view class="function">
                 <slot />
             </view>
@@ -74,7 +78,7 @@ export default class extends Vue {
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-areas: 'title content button';
-    height: 120rpx;
+    height: calc(60rpx + 30px);
 
     border-radius: 10rpx;
 
@@ -85,7 +89,7 @@ export default class extends Vue {
         position: relative;
 
         grid-area: title;
-        width: 110rpx;
+        width: calc(60rpx + 30px);
 
         font-size: $--font-size-base;
         font-weight: bold;
@@ -94,44 +98,10 @@ export default class extends Vue {
 
         border-right: 1px solid $--color-border-lighter;
     }
-    > .content {
-        position: relative;
-        > .label {
-            height: 100%;
-            padding: 15rpx;
-            box-sizing: border-box;
-
-            font-size: $--font-size-small;
-
-            color: $--color-text-secondary;
-            transition: all .2s linear;
-        }
-        > .function {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-
-            transition: all .2s linear;
-
-            opacity: 0;
-            pointer-events: none;
-        }
-        &.function-mode {
-            > .label {
-                opacity: 0;
-            }
-            > .function {
-                opacity: 1;
-                pointer-events: all;
-            }
-        }
-    }
     > .button {
         position: relative;
 
-        width: calc(110rpx + 1px);
+        width: calc(60rpx + 30px);
 
         font-size: $--font-size-base;
 
@@ -147,5 +117,48 @@ export default class extends Vue {
     transform: translate(-50%, -50%);
 
     width: fit-content;
+}
+
+.content {
+    position: relative;
+    > .label-container {
+        height: calc(60rpx + 30px);
+        width: 100%;
+
+        transition: all .2s linear;
+        > .label {
+            width: 100%;
+            height: auto;
+            min-height: 100%;
+            padding: 15rpx;
+            box-sizing: border-box;
+
+            font-size: $--font-size-small;
+            text-align: justify;
+
+            color: $--color-text-secondary;
+        }
+    }
+    > .function {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        transition: all .2s linear;
+
+        opacity: 0;
+        pointer-events: none;
+    }
+    &.function-mode {
+        > .label-container {
+            opacity: 0;
+        }
+        > .function {
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
 }
 </style>
