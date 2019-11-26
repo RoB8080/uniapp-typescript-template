@@ -22,6 +22,30 @@
         ],
         "description": "Vue Class Component"
     },
+    "ClassPageWithTheme": {
+        "prefix": "<vue> class-page-with-theme",
+        "body": [
+            "<template>",
+            "<view :style=\"theme\"></view>",
+            "</template>",
+            "",
+            "<script lang=\"ts\">",
+            "import { Component, Vue } from 'vue-property-decorator'",
+            "import ThemeVue from '@/mixins/theme.vue'",
+            "",
+            "@Component({",
+			"    name: '${1:ComponentName}'",
+            "})",
+            "export default class extends ThemeVue {}",
+			"</script>",
+            "",
+            "<style lang=\"scss\" scoped>",
+            "",
+            "</style>",
+            ""
+        ],
+        "description": "Vue Class Component"
+    },
     "ClassStoreModule": {
         "prefix": "<vue> class-store-module",
         "body": [

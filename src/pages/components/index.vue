@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import ThemeVue from '@/mixins/theme.vue'
 import VerticalMenu, { VerticalMenuItem } from '@/component/navigation/vertical-menu/vertical-menu.vue'
 import GestureView from '@/component/misc/gesture-view.vue'
 
@@ -27,12 +28,8 @@ import GestureView from '@/component/misc/gesture-view.vue'
         GestureView
     }
 })
-export default class extends Vue {
+export default class extends ThemeVue {
     private showMenu: boolean = false
-
-    private get theme() {
-        return this.$store.getters['theme/themeStyleString']
-    }
 
     private menu: VerticalMenuItem[] = [
         {

@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
+import ThemeVue from '@/mixins/theme.vue'
 import { AppModule } from '@/store/module/app'
 import { ThemeModule } from '@/store/module/theme'
 import FeatureCard from '@/component/misc/feature-card.vue'
@@ -44,11 +45,7 @@ import FeatureCard from '@/component/misc/feature-card.vue'
         FeatureCard
     }
 })
-export default class extends Vue {
-    private get theme() {
-        return this.$store.getters['theme/themeStyleString']
-    }
-
+export default class extends ThemeVue {
     // Store中主题色的setter/getter
     private get primaryColor() {
         return ThemeModule.rules['--color-primary']

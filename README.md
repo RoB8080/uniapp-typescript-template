@@ -1,16 +1,16 @@
 # uniapp-typescript-template
 
 - [uniapp-typescript-template](#uniapp-typescript-template)
-  - [Structure 项目结构](#structure-%e9%a1%b9%e7%9b%ae%e7%bb%93%e6%9e%84)
-  - [Environment Variables 环境变量](#environment-variables-%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f)
-  - [Request 网络请求](#request-%e7%bd%91%e7%bb%9c%e8%af%b7%e6%b1%82)
-  - [Theme 主题](#theme-%e4%b8%bb%e9%a2%98)
-    - [设置默认值](#%e8%ae%be%e7%bd%ae%e9%bb%98%e8%ae%a4%e5%80%bc)
-    - [修改主题条目](#%e4%bf%ae%e6%94%b9%e4%b8%bb%e9%a2%98%e6%9d%a1%e7%9b%ae)
-  - [Snippets 代码片段](#snippets-%e4%bb%a3%e7%a0%81%e7%89%87%e6%ae%b5)
-  - [Lint 代码检查](#lint-%e4%bb%a3%e7%a0%81%e6%a3%80%e6%9f%a5)
-    - [1. Manually 手动](#1-manually-%e6%89%8b%e5%8a%a8)
-    - [2. Automatically 自动](#2-automatically-%e8%87%aa%e5%8a%a8)
+  - [Structure 项目结构](#Structure-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84)
+  - [Environment Variables 环境变量](#Environment-Variables-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F)
+  - [Request 网络请求](#Request-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82)
+  - [Theme 主题](#Theme-%E4%B8%BB%E9%A2%98)
+    - [设置默认值](#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%80%BC)
+    - [修改主题条目](#%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E6%9D%A1%E7%9B%AE)
+  - [Snippets 代码片段](#Snippets-%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5)
+  - [Lint 代码检查](#Lint-%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5)
+    - [1. Manually 手动](#1-Manually-%E6%89%8B%E5%8A%A8)
+    - [2. Automatically 自动](#2-Automatically-%E8%87%AA%E5%8A%A8)
 
 ## Structure 项目结构
 
@@ -85,13 +85,21 @@ request({
 
 主要通过CSS变量以及Vuex实现
 
+提供VSCode代码片段<font color="#55ccbb"> \<vue> class-page-with-theme</font> 以方便创建
+
 注意：为了保证主题在每个页面生效，请确保
 
-1. 在pages.json中的每个页面里获取ThemeModule中的themeStyleString
+1. 在pages.json中的每个页面均引入ThemeVue作为基类
 
 ```typescript
-private get theme() {
-    return this.$store.getters['theme/themeStyleString']
+import { Component } from 'vue-property-decorator'
+import ThemeVue from '@/mixins/theme.vue'
+
+@Component({
+    name: 'Example',
+})
+export default class extends ThemeVue {
+    // 避免属性名为theme
 }
 ```
 
