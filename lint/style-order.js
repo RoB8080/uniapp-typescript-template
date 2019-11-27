@@ -93,7 +93,22 @@ const propertiesOrder = [
             'opacity',
             'box-shadow',
             'filter',
-            'overflow'
+            'overflow',
+            'mix-blend-mode'
+        ]
+    },
+    // Animation
+    {
+        groupName: 'Animation',
+        emptyLineBefore: 'always',
+        order: 'flexible',
+        noEmptyLineBetween: true,
+        properties: [
+            'transition',
+            'transition-delay',
+            'transition-duration',
+            'transition-property',
+            'transition-timing-function'
         ]
     }
 ]

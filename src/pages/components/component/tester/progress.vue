@@ -4,7 +4,7 @@
             :percentage="pgLOptions.percentage"
             :stroke-width="pgLOptions.strokeWidth"
             :inline-label="pgLOptions.inlineLabel"
-            :color="pgLOptions.color" />
+            :color="setColor" />
         <button
             @click="pgLPercentage -= 5">
             -
@@ -18,11 +18,6 @@
         <switch
             :checked="pgLOptions.inlineLabel"
             @change="pgLOptions.inlineLabel = $event.detail.value" />
-        <textarea
-            placeholder="颜色/数组/函数"
-            :auto-height="true"
-            @confirm="setColor"
-            @blur="setColor" />
     </view>
 </template>
 
@@ -40,8 +35,12 @@ export default class extends Vue {
     private pgLOptions = {
         percentage: 50,
         strokeWidth: 4,
-        inlineLabel: false,
-        color: '#000000'
+        inlineLabel: false
+    }
+
+    private setColor(percentage: number) {
+        console.log(`#0000${(percentage === 100 || percentage < 10) ? '00' : percentage}`)
+        return `#0000${(percentage === 100 || percentage < 10) ? '00' : percentage}`
     }
 
     private get pgLPercentage() {
@@ -50,10 +49,6 @@ export default class extends Vue {
 
     private set pgLPercentage(val: number) {
         this.pgLOptions.percentage = (val > 100 ? 100 : (val < 0 ? 0 : val))
-    }
-
-    private setColor(event: {detail: {value: string}}) {
-        this.pgLOptions.color = event.detail.value
     }
 }
 </script>

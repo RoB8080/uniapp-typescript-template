@@ -68,7 +68,8 @@
         <drawer
             ref="drawer"
             direction="left"
-            depth="350rpx">
+            depth="350rpx"
+            style="z-index: 10;">
             <vertical-menu
                 class="menu"
                 :menu-items="menu"

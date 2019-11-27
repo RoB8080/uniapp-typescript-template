@@ -10,7 +10,7 @@
         </view>
         <view
             v-if="disabled"
-            class="rb-button__disable-wrap" />
+            class="rb-button__disabled-wrap" />
     </button>
 </template>
 
@@ -76,6 +76,7 @@ button {
     border-radius: $--border-radius-base;
 
     background-color: $--color-white;
+
     transition: filter 50ms linear;
     &:active {
         filter: brightness(85%);
@@ -145,9 +146,6 @@ button {
     }
     &[disabled] {
         filter: none;
-        &::after {
-            background-color: rgba(200, 200, 200, 0.4);
-        }
     }
 }
 
@@ -187,5 +185,18 @@ button {
             color: $--color-danger;
         }
     }
+}
+
+.rb-button__disabled-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(180, 180, 180, 0.6);
+    mix-blend-mode: screen;
 }
 </style>

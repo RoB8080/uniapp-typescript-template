@@ -2,24 +2,10 @@
     <view
         class="progress__container"
         :style="styleVariables">
-        <view class="progress__body">
-            <view
-                class="progress__bar"
-                :class="inlineLabel?'inline':''">
-                <view class="inner" />
-                <view
-                    v-if="inlineLabel"
-                    class="progress_inline-label">
-                    {{ label }}
-                </view>
-            </view>
-        </view>
+        <view class="progress__body" />
         <view
-            v-if="!inlineLabel"
             class="progress__label">
-            <view class="content">
-                {{ label }}
-            </view>
+            {{ label }}
         </view>
     </view>
 </template>
@@ -61,8 +47,8 @@ export default class extends Vue {
 
     @Prop({
         required: false,
-        default: false
-    }) private inlineLabel!: boolean
+        default: '750rpx'
+    }) private width!: string;
 
     private get colorHelper() {
         if (typeof this.color === 'string') {
@@ -88,7 +74,7 @@ export default class extends Vue {
     }
 
     private get styleVariables(): string {
-        return `--stroke-width:${this.strokeWidth}px;--percentage:${this.percentage}%;--color:${this.colorString}`
+        return `--stroke-width:${this.strokeWidth}px;--width:${this.width};--percentage:${this.percentage}%;--color:${this.colorString}`
     }
 
     private get label(): string {

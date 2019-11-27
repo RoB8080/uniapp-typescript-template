@@ -146,9 +146,9 @@ export default class extends Vue {
         bottom: 0;
         left: 0;
 
-        transition: all .2s linear;
-
         opacity: 0;
+
+        transition: all .2s linear;
         pointer-events: none;
     }
     &.function-mode {

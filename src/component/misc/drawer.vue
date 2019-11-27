@@ -284,6 +284,7 @@ export default class extends Vue {
     height: auto;
 
     background-color: rgba(0, 0, 0, var(--wrap-opacity));
+
     transition: all .3s linear;
 
     pointer-events: none;
