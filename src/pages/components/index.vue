@@ -8,74 +8,11 @@
         @touchcancel="$refs['drawer'].touchEnd($event)">
         <view class="list">
             <progress-test />
-            <custom-button
-                round
-                size="mini">
-                默认按钮
-            </custom-button>
-            <custom-button
-                type="primary"
-                size="mini"
-                disabled>
-                主要按钮
-            </custom-button>
-            <custom-button
-                type="success"
-                size="mini"
-                round
-                disabled>
-                成功按钮
-            </custom-button>
-            <custom-button
-                type="info"
-                size="mini">
-                信息按钮
-            </custom-button>
-            <custom-button
-                type="warning"
-                round>
-                警告按钮
-            </custom-button>
-            <custom-button type="danger">
-                危险按钮
-            </custom-button>
-            <custom-button plain>
-                朴素按钮
-            </custom-button>
-            <custom-button
-                type="primary"
-                plain
-                round>
-                主要按钮
-            </custom-button>
-            <custom-button
-                type="success"
-                plain>
-                成功按钮
-            </custom-button>
-            <custom-button
-                type="info"
-                plain
-                round>
-                信息按钮
-            </custom-button>
-            <custom-button
-                type="warning"
-                plain
-                disabled>
-                警告按钮
-            </custom-button>
-            <custom-button
-                type="danger"
-                plain
-                round>
-                危险按钮
-            </custom-button>
         </view>
         <drawer
             ref="drawer"
             direction="left"
-            depth="350rpx"
+            depth="450rpx"
             style="z-index: 10;">
             <vertical-menu
                 class="menu"
@@ -91,7 +28,7 @@ import ThemeVue from '@/mixins/theme.vue'
 import VerticalMenu, { VerticalMenuItem } from '@/component/navigation/vertical-menu/vertical-menu.vue'
 import GestureView from '@/component/misc/gesture-view.vue'
 import Drawer from '@/component/misc/drawer.vue'
-import ProgressTest from './component/tester/progress.vue'
+import ProgressTest from './component/example/progress.vue'
 import ButtonGroup from '@/component/basic/button-group.vue'
 import CustomButton from '@/component/basic/button.vue'
 

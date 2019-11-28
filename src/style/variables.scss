@@ -31,15 +31,9 @@ $--font-size-medium: calc(var(--font-size-base) * 1.14);
 $--font-size-large: calc(var(--font-size-base) * 1.28);
 $--font-size-extra-large: calc(var(--font-size-base) * 1.42);
 
-
-$--component-height-mini: calc(var(--font-size-base) * 2.15);
-$--component-height-small: calc(var(--font-size-base) * 2.325);
-$--component-height-medium: calc(var(--font-size-base) * 2.5);
-$--component-height-large: calc(var(--font-size-base) * 2.85);
-
-$--component-height-mini-half: calc(var(--font-size-base) * 1.075);
-$--component-height-small-half: calc(var(--font-size-base) * 1.1625);
-$--component-height-medium-half: calc(var(--font-size-base) * 1.25);
-$--component-height-large-half: calc(var(--font-size-base) * 1.425);
+$--component-mini-height: calc(var(--font-size-base) * 1.72);
+$--component-small-height: calc(var(--font-size-base) * 2.325);
+$--component-medium-height: calc(var(--font-size-base) * 2.5);
+$--component-large-height: calc(var(--font-size-base) * 3.42);
 
 $--border-radius-base: 4px;

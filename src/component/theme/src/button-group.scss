@@ -8,20 +8,20 @@
             border-bottom-left-radius: $--border-radius-base;
             &.large {
                 &.round, &.round::before, &.round::after {
-                    border-top-left-radius: $--component-height-large-half;
-                    border-bottom-left-radius: $--component-height-large-half;
+                    border-top-left-radius: $--component-large-height-half;
+                    border-bottom-left-radius: $--component-large-height-half;
                 }
             }
             &.small {
                 &.round, &.round::before, &.round::after {
-                    border-top-left-radius: $--component-height-small-half;
-                    border-bottom-left-radius: $--component-height-small-half;
+                    border-top-left-radius: $--component-small-height-half;
+                    border-bottom-left-radius: $--component-small-height-half;
                 }
             }
             &.mini {
                 &.round, &.round::before, &.round::after {
-                    border-top-left-radius: $--component-height-mini-half;
-                    border-bottom-left-radius: $--component-height-mini-half;
+                    border-top-left-radius: $--component-mini-height-half;
+                    border-bottom-left-radius: $--component-mini-height-half;
                 }
             }
         }
@@ -30,20 +30,20 @@
             border-bottom-right-radius: $--border-radius-base;
             &.large {
                 &.round, &.round::before, &.round::after {
-                    border-top-right-radius: $--component-height-large-half;
-                    border-bottom-right-radius: $--component-height-large-half;
+                    border-top-right-radius: $--component-large-height-half;
+                    border-bottom-right-radius: $--component-large-height-half;
                 }
             }
             &.small {
                 &.round, &.round::before, &.round::after {
-                    border-top-right-radius: $--component-height-small-half;
-                    border-bottom-right-radius: $--component-height-small-half;
+                    border-top-right-radius: $--component-small-height-half;
+                    border-bottom-right-radius: $--component-small-height-half;
                 }
             }
             &.mini {
                 &.round, &.round::before, &.round::after {
-                    border-top-right-radius: $--component-height-mini-half;
-                    border-bottom-right-radius: $--component-height-mini-half;
+                    border-top-right-radius: $--component-mini-height-half;
+                    border-bottom-right-radius: $--component-mini-height-half;
                 }
             }
         }

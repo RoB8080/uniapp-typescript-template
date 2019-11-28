@@ -87,22 +87,7 @@
     }
     &.round {
         &, &::before, &::after, > .rb-button__disabled-wrap {
-            border-radius: $--component-height-medium-half;
-        }
-    }
-    &.large.round {
-        &, &::before, &::after, > .rb-button__disabled-wrap {
-            border-radius: $--component-height-large-half;
-        }
-    }
-    &.small.round {
-        &, &::before, &::after, > .rb-button__disabled-wrap {
-            border-radius: $--component-height-small-half;
-        }
-    }
-    &.mini.round {
-        &, &::before, &::after, > .rb-button__disabled-wrap {
-            border-radius: $--component-height-mini-half;
+            border-radius: $--component-large-height;
         }
     }
 }
@@ -114,11 +99,10 @@
     box-sizing: border-box;
 
     font-size: $--font-size-base;
-    line-height: $--component-height-medium;
+    line-height: $--component-medium-height;
     text-align: center;
 
     color: $--color-white;
-    overflow: hidden;
     &.default {
         color: $--color-text-regular;
     }
@@ -143,18 +127,18 @@
         padding: 0 $--font-size-medium;
 
         font-size: $--font-size-medium;
-        line-height: $--component-height-large;
+        line-height: $--component-large-height;
     }
     &.small {
         padding: 0 $--font-size-small;
 
         font-size: $--font-size-small;
-        line-height: $--component-height-small;
+        line-height: $--component-small-height;
     }
     &.mini {
         padding: 0 $--font-size-extra-small;
 
         font-size: $--font-size-extra-small;
-        line-height: $--component-height-mini;
+        line-height: $--component-mini-height;
     }
 }

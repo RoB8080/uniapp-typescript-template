@@ -2,7 +2,10 @@
     <button
         class="rb-button__body"
         :class="[type, {round: round}, {plain: plain}, size]"
-        :disabled="disabled">
+        :disabled="disabled"
+        :hover-start-time="10"
+        :hover-stay-time="90"
+        @click="$emit('click', $event)">
         <view
             class="rb-button__text"
             :class="[type, {plain: plain}, size]">
@@ -16,7 +19,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { ComponentSize } from '@/component/attributes'
 
 export type ButtonType = 'default'|'primary'|'success'|'info'|'warning'|'danger'|'text'
 
@@ -32,7 +34,7 @@ export default class extends Vue {
     @Prop({
         required: false,
         default: 'medium'
-    }) private size!: ComponentSize
+    }) private size!: string
 
     @Prop({
         required: false,
