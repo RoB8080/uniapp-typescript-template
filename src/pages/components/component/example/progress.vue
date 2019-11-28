@@ -2,6 +2,11 @@
     <view
         id="progress"
         class="content">
+        <progress-round
+            :percentage="pgLOptions.percentage"
+            :stroke-width="pgLOptions.strokeWidth"
+            width="350rpx"
+            :color="setColor" />
         <progress-linear
             :percentage="pgLOptions.percentage"
             :stroke-width="pgLOptions.strokeWidth"
@@ -53,6 +58,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import ProgressLinear from '@/component/data/progress-linear.vue'
+import ProgressRound from '@/component/data/progress-round.vue'
 import RbButton from '@/component/basic/button.vue'
 import RbSwitch from '@/component/form/switch.vue'
 import ProgressInline from '@/component/data/progress-inline.vue'
@@ -61,6 +67,7 @@ import ProgressInline from '@/component/data/progress-inline.vue'
     name: 'components',
     components: {
         ProgressLinear,
+        ProgressRound,
         RbButton,
         RbSwitch,
         ProgressInline
@@ -74,7 +81,7 @@ export default class extends Vue {
     }
 
     private setColor(percentage: number) {
-        return `#0000${(percentage === 100 || percentage < 10) ? '00' : percentage}`
+        return `hsl(${percentage * 3.6}, 85%, 45%)`
     }
 
     private get pgLPercentage() {

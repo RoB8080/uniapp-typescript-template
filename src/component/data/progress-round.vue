@@ -2,7 +2,10 @@
     <view
         class="progress__container"
         :style="styleVariables">
-        <view class="progress__body" />
+        <view class="progress__base" />
+        <view
+            class="progress__bar"
+            :style="percentageString" />
         <view
             class="progress__label">
             {{ label }}
@@ -11,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
 interface ColorRule {
     color: string
@@ -42,13 +45,45 @@ export default class extends Vue {
 
     @Prop({
         required: false,
-        default: 4
+        default: 6
     }) private strokeWidth!: number
 
     @Prop({
         required: false,
         default: '750rpx'
-    }) private width!: string;
+    }) private width!: string
+
+    private displayPercentage: number = 100;
+
+    private mounted() {
+        console.log(this.displayPercentage)
+    }
+
+    private timeout: number = 0;
+
+    private stepPercentage() {
+        const gap = (this.percentage - this.displayPercentage) / 10
+        if (gap > 0.025 || gap < -0.025) {
+            this.displayPercentage += gap
+            this.$nextTick(() => {
+                setTimeout(this.stepPercentage, 20)
+            })
+        } else {
+            this.displayPercentage = this.percentage
+        }
+    }
+
+    @Watch('percentage')
+    private onPercentageChange() {
+        if(this.percentage !== this.displayPercentage) {
+            clearTimeout(this.timeout)
+            setTimeout(this.stepPercentage, 20)
+        }
+    }
+
+    private get percentageString(): string {
+        return `--percentage:${Math.floor(this.displayPercentage * 1000) / 1000}%;`
+    }
 
     private get colorHelper() {
         if (typeof this.color === 'string') {
@@ -74,7 +109,7 @@ export default class extends Vue {
     }
 
     private get styleVariables(): string {
-        return `--stroke-width:${this.strokeWidth}px;--width:${this.width};--percentage:${this.percentage}%;--color:${this.colorString}`
+        return `--stroke-width:${this.strokeWidth}px;--width:${this.width};--color:${this.colorString}`
     }
 
     private get label(): string {
@@ -93,25 +128,22 @@ export default class extends Vue {
 
     position: relative;
 
-    display: grid;
-    grid-template-areas: 'body label';
-    grid-template-columns: 1fr auto;
+    width: var(--width);
+    height: var(--width);
 }
-.progress__body {
-    position: relative;
-}
-.progress__bar {
-    position: relative;
+.progress__base {
+    position: absolute;
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
 
-    height: var(--bar-width);
     width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 
     background-color: $--bg-color-dark;
     border-radius: var(--stroke-width);
     overflow: hidden;
+    border: var(--bar-width) solid $--bg-color-dark;
     > .inner {
         position: absolute;
         left: -100%;
@@ -127,25 +159,27 @@ export default class extends Vue {
         transition-property: transform, background-color;
     }
 }
-.progress_inline-label {
+.progress__bar {
     position: absolute;
+    left: 0;
+    top: 0;
 
-    box-sizing: border-box;
+    width: 100%;
     height: 100%;
-    width: var(--percentage);
-    min-width: fit-content;
-    padding: 0 var(--stroke-width);
+    box-sizing: border-box;
 
-    font-size: var(--stroke-width);
-    line-height: var(--bar-width);
-    text-align: right;
-
-    color: $--color-white;
+    border: var(--bar-width) var(--color) solid;
+    border-radius: 50%;
+    mask-image: conic-gradient(black var(--percentage), transparent var(--percentage));
+    mask-mode: alpha;
 
     transition: all $--animation-time-base ease;
 }
 .progress__label {
-    padding-left: 12px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
     font-size: $--font-size-base;
     line-height: 1.5;
@@ -154,11 +188,5 @@ export default class extends Vue {
 
     transition: $--animation-time-base ease;
     transition-property: color;
-    .content {
-        position: relative;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-    }
 }
 </style>
