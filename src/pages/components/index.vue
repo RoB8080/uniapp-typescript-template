@@ -8,20 +8,27 @@
         @touchcancel="$refs['drawer'].touchEnd($event)">
         <view class="list">
             <progress-test />
-            <custom-button round>
+            <custom-button
+                round
+                size="mini">
                 默认按钮
             </custom-button>
             <custom-button
                 type="primary"
+                size="mini"
                 disabled>
                 主要按钮
             </custom-button>
             <custom-button
                 type="success"
-                round>
+                size="mini"
+                round
+                disabled>
                 成功按钮
             </custom-button>
-            <custom-button type="info">
+            <custom-button
+                type="info"
+                size="mini">
                 信息按钮
             </custom-button>
             <custom-button
@@ -85,6 +92,7 @@ import VerticalMenu, { VerticalMenuItem } from '@/component/navigation/vertical-
 import GestureView from '@/component/misc/gesture-view.vue'
 import Drawer from '@/component/misc/drawer.vue'
 import ProgressTest from './component/tester/progress.vue'
+import ButtonGroup from '@/component/basic/button-group.vue'
 import CustomButton from '@/component/basic/button.vue'
 
 @Component({
@@ -94,7 +102,8 @@ import CustomButton from '@/component/basic/button.vue'
         GestureView,
         Drawer,
         ProgressTest,
-        CustomButton
+        CustomButton,
+        ButtonGroup
     }
 })
 export default class extends ThemeVue {
@@ -143,5 +152,6 @@ export default class extends ThemeVue {
     display: grid;
     grid-auto-rows: auto;
     grid-gap: 15rpx;
+    padding: 0 15rpx;
 }
 </style>

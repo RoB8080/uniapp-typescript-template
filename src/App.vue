@@ -28,4 +28,6 @@ input {
 }
 
 @import "~@/iconfont/style.scss";
+
+@import '~@/component/theme/index.scss';
 </style>

@@ -1,0 +1,51 @@
+.rb-button-group {
+    background-color: green;
+    .rb-button__body {
+        display: inline-block !important;
+        border-radius: 0 !important;
+        &:first-child {
+            border-top-left-radius: $--border-radius-base;
+            border-bottom-left-radius: $--border-radius-base;
+            &.large {
+                &.round, &.round::before, &.round::after {
+                    border-top-left-radius: $--component-height-large-half;
+                    border-bottom-left-radius: $--component-height-large-half;
+                }
+            }
+            &.small {
+                &.round, &.round::before, &.round::after {
+                    border-top-left-radius: $--component-height-small-half;
+                    border-bottom-left-radius: $--component-height-small-half;
+                }
+            }
+            &.mini {
+                &.round, &.round::before, &.round::after {
+                    border-top-left-radius: $--component-height-mini-half;
+                    border-bottom-left-radius: $--component-height-mini-half;
+                }
+            }
+        }
+        &:last-child {
+            border-top-right-radius: $--border-radius-base;
+            border-bottom-right-radius: $--border-radius-base;
+            &.large {
+                &.round, &.round::before, &.round::after {
+                    border-top-right-radius: $--component-height-large-half;
+                    border-bottom-right-radius: $--component-height-large-half;
+                }
+            }
+            &.small {
+                &.round, &.round::before, &.round::after {
+                    border-top-right-radius: $--component-height-small-half;
+                    border-bottom-right-radius: $--component-height-small-half;
+                }
+            }
+            &.mini {
+                &.round, &.round::before, &.round::after {
+                    border-top-right-radius: $--component-height-mini-half;
+                    border-bottom-right-radius: $--component-height-mini-half;
+                }
+            }
+        }
+    }
+}
