@@ -29,8 +29,6 @@ import VerticalMenu, { VerticalMenuItem } from '@/component/navigation/vertical-
 import GestureView from '@/component/misc/gesture-view.vue'
 import Drawer from '@/component/misc/drawer.vue'
 import ProgressTest from './component/example/progress.vue'
-import ButtonGroup from '@/component/basic/button-group.vue'
-import CustomButton from '@/component/basic/button.vue'
 
 @Component({
     name: 'components',
@@ -38,9 +36,7 @@ import CustomButton from '@/component/basic/button.vue'
         VerticalMenu,
         GestureView,
         Drawer,
-        ProgressTest,
-        CustomButton,
-        ButtonGroup
+        ProgressTest
     }
 })
 export default class extends ThemeVue {

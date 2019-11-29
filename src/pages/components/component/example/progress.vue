@@ -24,22 +24,12 @@
                 @click="pgLPercentage += 5">
                 +
             </rb-button>
-            <rb-button
-                type="primary"
-                plain
-                size="mini"
-                round
-                @click="pgLPercentage -= 5">
-                -
-            </rb-button>
-            <rb-button
-                type="primary"
-                plain
-                size="mini"
-                round
-                @click="pgLPercentage += 5">
-                +
-            </rb-button>
+            <progress-inline
+                :percentage="pgLOptions.percentage"
+                :color="setColor" />
+            <input
+                v-model="pgLPercentage"
+                type="number">
         </view>
         <input
             v-model="pgLOptions.strokeWidth"
@@ -65,13 +55,15 @@ import { Component, Vue } from 'vue-property-decorator'
 import ProgressLinear from '@/component/data/progress-linear.vue'
 import RbButton from '@/component/basic/button.vue'
 import RbSwitch from '@/component/form/switch.vue'
+import ProgressInline from '@/component/data/progress-inline.vue'
 
 @Component({
     name: 'components',
     components: {
         ProgressLinear,
         RbButton,
-        RbSwitch
+        RbSwitch,
+        ProgressInline
     }
 })
 export default class extends Vue {
@@ -82,16 +74,16 @@ export default class extends Vue {
     }
 
     private setColor(percentage: number) {
-        console.log(`#0000${(percentage === 100 || percentage < 10) ? '00' : percentage}`)
         return `#0000${(percentage === 100 || percentage < 10) ? '00' : percentage}`
     }
 
     private get pgLPercentage() {
-        return this.pgLOptions.percentage
+        return this.pgLOptions.percentage.toString()
     }
 
-    private set pgLPercentage(val: number) {
-        this.pgLOptions.percentage = (val > 100 ? 100 : (val < 0 ? 0 : val))
+    private set pgLPercentage(val: string) {
+        const t = parseInt(val)
+        this.pgLOptions.percentage = (t > 100 ? 100 : (t < 0 ? 0 : t))
     }
 }
 </script>

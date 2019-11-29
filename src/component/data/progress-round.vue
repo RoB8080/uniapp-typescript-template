@@ -123,7 +123,7 @@ export default class extends Vue {
         background-color: var(--color);
         border-radius: var(--stroke-width);
 
-        transition: .3s ease;
+        transition: $--animation-time-base ease;
         transition-property: transform, background-color;
     }
 }
@@ -142,7 +142,7 @@ export default class extends Vue {
 
     color: $--color-white;
 
-    transition: all .3s ease;
+    transition: all $--animation-time-base ease;
 }
 .progress__label {
     padding-left: 12px;
@@ -152,7 +152,7 @@ export default class extends Vue {
 
     color: var(--color);
 
-    transition: .3s ease;
+    transition: $--animation-time-base ease;
     transition-property: color;
     .content {
         position: relative;

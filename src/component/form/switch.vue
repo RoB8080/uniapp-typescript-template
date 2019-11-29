@@ -87,16 +87,7 @@ $--font-size-medium-double: calc(var(--font-size-base) * 2.28);
     background-color: $--bg-color-dark;
     overflow: hidden;
 
-    transition: all .3s ease;
-    // &.large {
-    //     height: $--font-size-medium;
-    // }
-    // &.small {
-    //     height: $--font-size-small;
-    // }
-    // &.mini {
-    //     height:  $--font-size-extra-small;
-    // }
+    transition: all $--animation-time-base ease;
     &::before {
         content: "";
 
@@ -113,7 +104,7 @@ $--font-size-medium-double: calc(var(--font-size-base) * 2.28);
         background-color: $--color-white;
         background-clip: content-box;
 
-        transition: all .3s ease;
+        transition: all $--animation-time-base ease;
     }
     &.active {
         background-color: $--color-primary;

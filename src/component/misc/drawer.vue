@@ -285,7 +285,7 @@ export default class extends Vue {
 
     background-color: rgba(0, 0, 0, var(--wrap-opacity));
 
-    transition: all .3s linear;
+    transition: all $--animation-time-base linear;
 
     pointer-events: none;
     &.active {
