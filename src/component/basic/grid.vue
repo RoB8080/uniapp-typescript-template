@@ -1,7 +1,9 @@
 <template>
     <view
-        class="grid"
-        :style="styleVariables" />
+        class="rb-grid"
+        :style="styleVariables">
+        <slot />
+    </view>
 </template>
 
 <script lang="ts">
@@ -33,10 +35,10 @@ export default class extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.grid {
+.rb-grid {
     display: grid;
     grid-template-columns: repeat(var(--columns), 1fr);
     grid-template-rows: repeat(var(--rows), 1fr);
-    // grid-gap:
+    grid-gap: var(--gap);
 }
 </style>

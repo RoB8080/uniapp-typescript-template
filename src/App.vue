@@ -22,10 +22,6 @@ $icomoon-font-path: '~@/iconfont/fonts';
 page {
     min-height: 100%
 }
-input {
-    height: auto;
-    min-height: auto;
-}
 
 @import "~@/iconfont/style.scss";
 

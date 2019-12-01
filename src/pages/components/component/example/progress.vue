@@ -1,11 +1,15 @@
 <template>
     <view
         id="progress"
-        class="content">
+        class="content"
+        style="padding:0 25rpx;">
         <progress-round
+            class="round"
             :percentage="pgLOptions.percentage"
             :stroke-width="pgLOptions.strokeWidth"
+            style="padding:0 175rpx"
             width="350rpx"
+            line-width="25rpx"
             :color="setColor" />
         <progress-linear
             :percentage="pgLOptions.percentage"
@@ -36,9 +40,10 @@
                 v-model="pgLPercentage"
                 type="number">
         </view>
-        <input
-            v-model="pgLOptions.strokeWidth"
-            type="number">
+        <rb-input
+            v-model="pgLPercentage"
+            type="number"
+            placeholder="百分比" />
         <rb-switch
             v-model="pgLOptions.inlineLabel"
             size="large" />
@@ -61,6 +66,7 @@ import ProgressLinear from '@/component/data/progress-linear.vue'
 import ProgressRound from '@/component/data/progress-round.vue'
 import RbButton from '@/component/basic/button.vue'
 import RbSwitch from '@/component/form/switch.vue'
+import RbInput from '@/component/form/input.vue'
 import ProgressInline from '@/component/data/progress-inline.vue'
 
 @Component({
@@ -70,6 +76,7 @@ import ProgressInline from '@/component/data/progress-inline.vue'
         ProgressRound,
         RbButton,
         RbSwitch,
+        RbInput,
         ProgressInline
     }
 })
@@ -81,7 +88,7 @@ export default class extends Vue {
     }
 
     private setColor(percentage: number) {
-        return `hsl(${percentage * 3.6}, 85%, 45%)`
+        return `rgb(${percentage * 2.55}, 128, 128)`
     }
 
     private get pgLPercentage() {
@@ -97,7 +104,10 @@ export default class extends Vue {
 
 <style lang="scss" scoped>
 .content {
-    padding: 0 5vw;
+    text-align: center;
+}
+.round {
+    margin: 0 auto;
 }
 .value-control {
     display: grid;

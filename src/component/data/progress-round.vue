@@ -2,10 +2,10 @@
     <view
         class="progress__container"
         :style="styleVariables">
-        <view class="progress__base" />
-        <view
-            class="progress__bar"
-            :style="percentageString" />
+        <canvas
+            v-if="canvasID"
+            :canvas-id="canvasID"
+            class="progress__canvas" />
         <view
             class="progress__label">
             {{ label }}
@@ -15,6 +15,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+import { toPixel } from '../utils/length'
 
 interface ColorRule {
     color: string
@@ -32,42 +33,17 @@ export type ColorGetter = string | ColorRule[] | ColorFunction
 export default class extends Vue {
     @Prop({
         required: true
-    }) private percentage!: number
+    }) percentage!: number
 
-    @Prop({
-        required: false
-    }) private format!: (percentage: number) => string
+    private displayPercentage: number = 0
 
-    @Prop({
-        required: false,
-        default: '#000000'
-    }) private color!: ColorGetter
+    private timeoutID: number = 0
 
-    @Prop({
-        required: false,
-        default: 6
-    }) private strokeWidth!: number
-
-    @Prop({
-        required: false,
-        default: '750rpx'
-    }) private width!: string
-
-    private displayPercentage: number = 100;
-
-    private mounted() {
-        console.log(this.displayPercentage)
-    }
-
-    private timeout: number = 0;
-
-    private stepPercentage() {
-        const gap = (this.percentage - this.displayPercentage) / 10
-        if (gap > 0.025 || gap < -0.025) {
-            this.displayPercentage += gap
-            this.$nextTick(() => {
-                setTimeout(this.stepPercentage, 20)
-            })
+    private chasingStep() {
+        const step = (this.percentage - this.displayPercentage) / 10
+        if (Math.abs(step) > 0.05) {
+            this.displayPercentage += step
+            this.timeoutID = setTimeout(this.chasingStep, 17)
         } else {
             this.displayPercentage = this.percentage
         }
@@ -75,15 +51,22 @@ export default class extends Vue {
 
     @Watch('percentage')
     private onPercentageChange() {
-        if(this.percentage !== this.displayPercentage) {
-            clearTimeout(this.timeout)
-            setTimeout(this.stepPercentage, 20)
-        }
+        clearTimeout(this.timeoutID)
+        this.timeoutID = setTimeout(this.chasingStep, 17)
     }
 
-    private get percentageString(): string {
-        return `--percentage:${Math.floor(this.displayPercentage * 1000) / 1000}%;`
-    }
+    @Prop({
+        required: false
+    }) format!: (percentage: number) => string
+
+    @Prop({
+        required: false,
+        default: '#000000'
+    }) color!: ColorGetter
+
+    @Prop({
+        required: false
+    }) fontColor!: string
 
     private get colorHelper() {
         if (typeof this.color === 'string') {
@@ -108,72 +91,100 @@ export default class extends Vue {
         return this.colorHelper(this.percentage)
     }
 
-    private get styleVariables(): string {
-        return `--stroke-width:${this.strokeWidth}px;--width:${this.width};--color:${this.colorString}`
+    @Prop({
+        required: false,
+        default: '6px'
+    }) lineWidth!: string
+
+    @Prop({
+        required: false,
+        default: '50px'
+    }) width!: string
+
+    get pixelWidth(): number {
+        return toPixel(this.width) || 6
     }
 
-    private get label(): string {
+    get pixelLineWidth(): number {
+        return toPixel(this.lineWidth) || 50
+    }
+
+    get styleVariables(): string {
+        return `--width:${this.pixelWidth}px;--color:${this.fontColor || this.colorString};--line-width:${this.lineWidth}px;`
+    }
+
+    get label(): string {
         if (this.format) {
             return this.format(this.percentage)
         } else {
             return `${this.percentage}%`
         }
     }
+
+    get ringP() {
+        return this.pixelWidth / 2
+    }
+    get ringR() {
+        return (this.pixelWidth - this.pixelLineWidth) / 2
+    }
+    get ringDeg() {
+        return (2 * Math.PI / 100 * this.displayPercentage) - 0.5 * Math.PI
+    }
+
+    private canvasID: string = ''
+    private canvasContext!: CanvasContext
+    private canvasLengthBase: number = uni.getSystemInfoSync().fontSizeSetting || 16
+
+    private drawRing() {
+        const context = this.canvasContext
+        const r = this.ringR
+        const p = this.ringP
+
+        context.lineWidth = this.pixelLineWidth
+
+        context.beginPath()
+        context.arc(p, p, r, 0, 2 * Math.PI)
+        context.strokeStyle = '#c1c4c8'
+        context.stroke()
+
+        if (this.displayPercentage !== 0) {
+            context.beginPath()
+            context.arc(p, p, r, -0.5 * Math.PI, this.ringDeg)
+            context.lineCap = 'round'
+            context.strokeStyle = this.colorString
+            context.stroke()
+        }
+
+        context.draw()
+    }
+
+    @Watch('displayPercentage')
+    private onDisplayPercentageChange() {
+        this.drawRing()
+    }
+
+    private created() {
+        this.canvasID = new Date().getTime().toString()
+    }
+
+    private mounted() {
+        this.canvasContext = uni.createCanvasContext(this.canvasID, this)
+        this.drawRing()
+        this.$nextTick(this.chasingStep)
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 .progress__container {
-    --bar-width: calc(var(--stroke-width) * 2);
-
     position: relative;
 
     width: var(--width);
     height: var(--width);
 }
-.progress__base {
-    position: absolute;
-    left: 0;
-    top: 0;
-
+.progress__canvas {
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
-
-    background-color: $--bg-color-dark;
-    border-radius: var(--stroke-width);
-    overflow: hidden;
-    border: var(--bar-width) solid $--bg-color-dark;
-    > .inner {
-        position: absolute;
-        left: -100%;
-        transform: translateX(var(--percentage));
-
-        height: 100%;
-        width: 100%;
-
-        background-color: var(--color);
-        border-radius: var(--stroke-width);
-
-        transition: $--animation-time-base ease;
-        transition-property: transform, background-color;
-    }
-}
-.progress__bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-
-    border: var(--bar-width) var(--color) solid;
-    border-radius: 50%;
-    mask-image: conic-gradient(black var(--percentage), transparent var(--percentage));
-    mask-mode: alpha;
-
-    transition: all $--animation-time-base ease;
 }
 .progress__label {
     position: absolute;

@@ -38,6 +38,8 @@ $--component-large-height: calc(var(--font-size-base) * 3.42);
 
 $--border-radius-base: 4px;
 
-$--animation-time-base: .3s;
-$--animation-time-short: .2s;
-$--animation-time-long: .4s;
+$--animation-time-extra-short: calc(var(--animation-time) * 0.6);
+$--animation-time-short: calc(var(--animation-time) * 0.8);
+$--animation-time-base: var(--animation-time);
+$--animation-time-long: calc(var(--animation-time) * 1.2);
+$--animation-time-extra-long: calc(var(--animation-time) * 1.4);

@@ -6,7 +6,8 @@ const { fontSizeSetting } = uni.getSystemInfoSync()
 
 const defaultTheme: ThemeRules = {
     '--color-primary': '#46b4fd',
-    '--font-size-base': fontSizeSetting ? `${fontSizeSetting}px` : `32rpx`
+    '--font-size-base': fontSizeSetting ? `${fontSizeSetting}px` : `32rpx`,
+    '--animation-time': '.3s'
 }
 
 export interface ThemeRuleOption {
