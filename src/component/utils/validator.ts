@@ -2,8 +2,24 @@ export const componentSize = (value: any) => {
     return ['mini', 'small', 'medium', 'large'].includes(value)
 }
 
-export const inputNumber = (value: string) => {
-    return /^(-?(0|([1-9]\d*))(\.\d*)?)$/.test(value)
+interface inputValidatorResult {
+    valid: boolean,
+    autoFixed?: string
+}
+
+export const inputNumber = (value: string): inputValidatorResult => {
+    const valid = /^(-?(0|([1-9]\d*))(\.\d*)?)$/.test(value)
+    if (valid) {
+        return {
+            valid: true
+        }
+    } else {
+        let autoFixed: string | undefined
+        if (value === '') autoFixed = '0'
+    }
+    return {
+        valid
+    }
 }
 
 export const completeNumber = (value: string) => {

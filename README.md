@@ -171,15 +171,19 @@ npm run lint:style --fix
 - [ ] Radio 单选框
 - [ ] Checkbox 多选框
 - [ ] Input 输入框
+  - [x] String 字符串
+  - [ ] Number 数字
 - [ ] InputNumber 计数器
 - [ ] Select 选择器
-- [ ] Switch 开关
+- [x] Switch 开关
 - [ ] Slider 滑块
 
 #### Data
 
-- [x] Progress(Linear) 进度条(条状)
-- [ ] Progress(Round) 进度条(环状))
+- [x] Progress 进度条
+  - [x] Linear 条状
+  - [x] Round 环状
+  - [x] Inline 行内
 - [ ] Badge 标记
 
 #### Notice
@@ -195,5 +199,5 @@ npm run lint:style --fix
 
 - [ ] Carousel 走马灯
 - [ ] Collapse 折叠面板
-- [ ] Drawer 抽屉
+- [x] Drawer 抽屉
 

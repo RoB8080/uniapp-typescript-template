@@ -40,7 +40,7 @@ export default class extends Vue {
     @Prop({
         required: false,
         default: 'text',
-        validator: (value) => {
+        validator: (value: any) => {
             return ['text', 'number'].includes(value)
         }
     }) type!: string
@@ -85,9 +85,16 @@ export default class extends Vue {
         if (this.inputValidator(val)) {
             this.$emit('input', val)
         } else {
-            setTimeout(() => {
-                this.iValue = this.value
-            }, 0)
+            if (this.type === 'number' && val === '') {
+                this.$emit('input', '0')
+                setTimeout(() => {
+                    this.iValue = '0'
+                }, 0)
+            } else {
+                setTimeout(() => {
+                    this.iValue = this.value
+                }, 0)
+            }
         }
     }
     // 完成时验证
