@@ -29,6 +29,7 @@
                 label="内置基础组件库，涵盖多个方面。"
                 @click="navigateTo('/pages/components/index')" />
         </view>
+        <drawer-cover />
     </view>
 </template>
 
@@ -38,11 +39,13 @@ import ThemeVue from '@/mixins/theme.vue'
 import { AppModule } from '@/store/module/app'
 import { ThemeModule } from '@/store/module/theme'
 import FeatureCard from '@/component/misc/feature-card.vue'
+import DrawerCover from '@/component/misc/drawer-cover.vue'
 
 @Component({
     name: 'index',
     components: {
-        FeatureCard
+        FeatureCard,
+        DrawerCover
     }
 })
 export default class extends ThemeVue {

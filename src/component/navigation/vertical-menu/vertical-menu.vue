@@ -50,5 +50,7 @@ export default class extends Vue {
     display: grid;
     height: 100%;
     padding: 20rpx 20rpx 20rpx 0;
+
+    background: white;
 }
 </style>

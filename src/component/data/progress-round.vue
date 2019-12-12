@@ -125,7 +125,7 @@ export default class extends Vue {
         return this.pixelWidth / 2
     }
     get ringR() {
-        return (this.pixelWidth - this.pixelLineWidth) / 2
+        return (this.pixelWidth - this.pixelLineWidth) / 2.1
     }
     get ringDeg() {
         return (2 * Math.PI / 100 * this.displayPercentage) - 0.5 * Math.PI

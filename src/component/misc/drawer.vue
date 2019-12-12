@@ -158,12 +158,19 @@ export default class extends Vue {
         }
     }
 
+    opacityFactorHelperTimeoutID: number = 0;
+
     private onPosChange(event: {detail: {x: number, y: number, source: string}}) {
         const { x, y, source } = event.detail
         if (source === 'touch') {
             this.touchingX = x
             this.touchingY = y
-            this.opacityFactorHelper([x, y])
+        }
+        if (!this.opacityFactorHelperTimeoutID) {
+            this.opacityFactorHelperTimeoutID = setTimeout(() => {
+                this.opacityFactorHelperTimeoutID = 0
+                this.opacityFactorHelper([x, y])
+            }, 17)
         }
     }
 
@@ -173,10 +180,10 @@ export default class extends Vue {
         }
         let toClose: boolean = false
         switch (this._direction) {
-        case 'top': toClose = this.touchingY <= -this.pixelDepth / 2; break
-        case 'right': toClose = this.touchingX >= -this.pixelDepth / 2; break
-        case 'bottom': toClose = this.touchingY >= -this.pixelDepth / 2; break
-        case 'left': toClose = this.touchingX <= -this.pixelDepth / 2; break
+        case 'top': toClose = this.touchingY <= -this.pixelDepth * (this.active ? 0.2 : 0.8); break
+        case 'right': toClose = this.touchingX >= -this.pixelDepth * (this.active ? 0.8 : 0.2); break
+        case 'bottom': toClose = this.touchingY >= -this.pixelDepth * (this.active ? 0.8 : 0.2); break
+        case 'left': toClose = this.touchingX <= -this.pixelDepth * (this.active ? 0.2 : 0.8); break
         }
         this.x = this.touchingX
         this.y = this.touchingY
@@ -297,9 +304,6 @@ export default class extends Vue {
     position: absolute;
     > .drawer__body {
         position: absolute;
-
-        background-color: white;
-        background-color: --drawer-background-color;
     }
     &.left, &.right {
         height: 100%;

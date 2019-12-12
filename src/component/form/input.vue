@@ -75,6 +75,7 @@ export default class extends Vue {
         switch (this.type) {
         default:
         case 'text': return () => true
+        // @ts-ignore
         case 'number': return validateInputNumber
         case 'idcard': return validateInputIDCard
         }
