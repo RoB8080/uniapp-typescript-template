@@ -35,7 +35,7 @@
     "@dcloudio/uni-mp-toutiao": "^2.0.0-24220191115006",
     "@dcloudio/uni-mp-weixin": "^2.0.0-24220191115006",
     "@dcloudio/uni-stat": "^2.0.0-24220191115006",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "flyio": "^0.6.2",
     "lint-staged": "^9.4.3",
     "postcss-sorting": "^5.0.1",
